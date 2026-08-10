@@ -1,13 +1,13 @@
+import { Provider } from "react-redux";
+import { RouterProvider } from "react-router/dom";
+import { store } from "@/app/store";
+import { router } from "@/routes";
+import { AuthGate } from "@/features/auth/AuthGate";
 
-// import './App.css';
-import { Button } from "@/components/ui/button";
-
-function App() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
-      <h1 className="text-3xl text-blue-900 font-b">Tailwind is working</h1>
-      <Button>Shadcn is working</Button>
-    </div>
-  );
-}
-export default App;
+export const App = () => (
+  <Provider store={store}>
+    <AuthGate>
+      <RouterProvider router={router} />
+    </AuthGate>
+  </Provider>
+);
