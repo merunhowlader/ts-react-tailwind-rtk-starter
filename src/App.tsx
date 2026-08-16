@@ -15,4 +15,3 @@ export const App = () => (
     </Provider>
   </ErrorBoundary>
 );
-const brokenVar: string = 123;
