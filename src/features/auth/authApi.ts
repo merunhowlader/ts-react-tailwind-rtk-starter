@@ -13,8 +13,21 @@ interface LoginResponse {
   csrfToken: string;
 }
 
+interface RegisterRequest {
+  name: string;
+  email: string;
+  password: string;
+}
+
+interface RegisterResponse {
+  user: User;
+}
+
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    register: builder.mutation<RegisterResponse, RegisterRequest>({
+      query: (body) => ({ url: "/auth/register", method: "POST", body }),
+    }),
     login: builder.mutation<LoginResponse, LoginRequest>({
       query: (credentials) => ({
         url: "/auth/login",
@@ -43,4 +56,9 @@ export const authApi = baseApi.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useLoginMutation, useLogoutMutation, useMeQuery } = authApi;
+export const {
+  useRegisterMutation,
+  useLoginMutation,
+  useLogoutMutation,
+  useMeQuery,
+} = authApi;

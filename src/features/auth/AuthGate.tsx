@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { useMeQuery } from "./authApi";
 import { sessionEstablished, loggedOut } from "./authSlice";
 import { setCsrfToken } from "./csrf";
+import { Loader } from "@/components/ui/loader";
 
 export const AuthGate = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch();
@@ -21,7 +22,7 @@ export const AuthGate = ({ children }: { children: ReactNode }) => {
   if (isLoading || auth.status === "idle") {
     return (
       <div className="flex min-h-screen items-center justify-center text-sm text-muted-foreground">
-        Loading session…
+        <Loader size="lg" label="Loading session…" />
       </div>
     );
   }

@@ -12,11 +12,11 @@ import {
   setCsrfToken,
   clearCsrfToken,
 } from "@/features/auth/csrf";
-
+import { env } from "@/lib/env";
 const refreshMutex = new Mutex();
 
 const rawBaseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_API_BASE_URL,
+  baseUrl: env.VITE_API_BASE_URL,
   credentials: "include",
   prepareHeaders: (headers) => {
     const csrf = getCsrfToken();
